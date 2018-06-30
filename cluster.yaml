@@ -1,0 +1,22 @@
+version: '2.0'
+services:
+        datastore:
+                image: 'sam/spark-datastore'
+                build:
+                        context: 'spark-datastore/'
+                        dockerfile: 'Dockerfile'
+        master:
+                image: 'sam/spark-master'
+                build:
+                        context: 'spark-master/'
+                        dockerfile: 'Dockerfile'
+        slave:
+                image: 'sam/spark-slave'
+                build:
+                        context: 'spark-slave/'
+                        dockerfile: 'Dockerfile'
+        submit:
+                image: 'sam/spark-submit'
+                build:
+                        context: 'spark-submit/'
+                        dockerfile: 'Dockerfile'
