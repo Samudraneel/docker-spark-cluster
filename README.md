@@ -2,6 +2,16 @@
 
 Credits to the work that has gone to the base of this repository goes to: brunocfnba. I am making use of this repository for a personal project and have gone on to modify some directories to my own needs.
 
+Note that if any commands fail, then add the super user command before the command listed:
+
+```
+sudo [whatever command was being run before]
+```
+or:
+```
+sudo !!
+```
+!! runs the previous command
 ### Install docker
 
 Install the appropriate docker version for your operating system. Use the following link to do so.
@@ -35,22 +45,26 @@ Once you have all the images created it's time to start them up.
 
 ##### Create the datastore container
 
-We first create the datastore container so all the other container can use the datastore container's data volume.
+Run the following command:
 ```
-docker create -v /data:/data --name spark-datastore sam/spark-datastore
+bash tools/createContainers.sh datastore
 ```
+
 ####  Create the spark master container
+
+Run the following command:
 ```
-docker run -d -p 8080:8080 -p 7077:7077 --volumes-from spark-datastore --name master sam/spark-master
+bash tools/createContainers.sh master
 ```
 
 #### Create the spark slaves (workers) container
 
 You can create as many workers containers as you want to.
+
+Run the following command:
 ```
-docker run -d --link master:master --volumes-from spark-datastore sam/spark-slave
+bash tools/createContainers.sh worker
 ```
-> The link option allows the container automatically connect to the other (master in this case) by being added to the same network.
 
 At this time you should have your spark cluster running on docker and waiting to run spark code.
 To check the containers are running simply run `docker ps` or `docker ps -a` to view even the datastore created container.
