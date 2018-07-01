@@ -42,32 +42,9 @@ docker build -t sam/spark-datastore spark-datastore/ && docker build -t sam/spar
 ### Creating and starting the containers
 
 Once you have all the images created it's time to start them up.
-
-##### Create the datastore container
-
-Run the following command:
 ```
-bash tools/createContainers.sh datastore
+bash tools/startup.sh
 ```
-
-####  Create the spark master container
-
-Run the following command:
-```
-bash tools/createContainers.sh master
-```
-
-#### Create the spark slaves (workers) container
-
-You can create as many workers containers as you want to.
-
-Run the following command:
-```
-bash tools/createContainers.sh worker
-```
-
-At this time you should have your spark cluster running on docker and waiting to run spark code.
-To check the containers are running simply run `docker ps` or `docker ps -a` to view even the datastore created container.
 
 ### Running a spark code using spark-submit
 
