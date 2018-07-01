@@ -20,6 +20,6 @@ then
 	# Note that you can create as many as you want
 	# TODO: use a loop with a second argument
 	# The link option allows the container automatically connect to the other (master in this case) by being added to the same network.
-	docker run -d --link master:master --volumes-from spark-datastore sam/spark-slave
+	docker run -d --link master:master --volumes-from spark-datastore --name worker sam/spark-slave
 
 fi
